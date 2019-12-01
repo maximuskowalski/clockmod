@@ -8,5 +8,4 @@
   roles:
     - { role: pre_tasks }
     - { role: myrole, tags: ['myrole'] }
-#    - { role: rocket, tags: ['rocket'] }
     - { role: mkvtoolnix, tags: ['mkvtoolnix'] }
