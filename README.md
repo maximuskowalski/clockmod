@@ -6,13 +6,13 @@ Blank Template to add custom Ansible roles to Cloudbox.
 1. Clone this repo:
 
     ```bash
-    git clone https://github.com/Cloudbox/cloudbox_mod.git ~/cloudbox_mod
+    git clone https://github.com/maximuskowalski/clockmod.git ~/clockmod
     ```
 
-1. CD into the `cloudbox_mod` folder:
+1. CD into the `clockmod` folder:
 
     ```bash
-    cd ~/cloudbox_mod
+    cd ~/clockmod
     ```
 
 1. If you have an Ansible vault password file, add the location to `ansible.cfg`:
@@ -20,7 +20,7 @@ Blank Template to add custom Ansible roles to Cloudbox.
     To edit:
 
     ```bash
-    nano ~/cloudbox_mod/ansible.cfg
+    nano ~/clockmod/ansible.cfg
     ```
 
     Add line (with path to your vault password file):
@@ -55,11 +55,11 @@ Blank Template to add custom Ansible roles to Cloudbox.
 1. Add custom variables into `settings.yml`:
 
     ```
-    ~/cloudbox_mod/settings.yml
+    ~/clockmod/settings.yml
     ```
 
 
-1. Add the Ansible role to `cloudbox_mod.yml`:
+1. Add the Ansible role to `clockmod.yml`:
 
     To edit:
 
