@@ -9,12 +9,12 @@
 #                   GNU General Public License v3.0                     #
 #########################################################################
 ---
-- name: "Set DNS Record on CloudFlare"
+- name: "Setting CloudFlare DNS Record"
   include_role:
-    name: dns
+    name: cloudflare-dns
   vars:
-    dns_record: "flexget"
-    dns_zone: "{{ user.domain }}"
+    record: flexget
+  when: cloudflare_enabled
 
 - name: Create required directories
   file: "path={{ item }} state=directory mode=0775 owner={{ user.name }} group={{ user.name }}"
