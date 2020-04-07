@@ -1,0 +1,58 @@
+
+#########################################################################
+# Title:         Cloudbox: Flexget                                      #
+# Author(s):     desimaniac                                             #
+# URL:           https://github.com/cloudbox/cloudbox                   #
+# --                                                                    #
+#         Part of the Cloudbox project: https://cloudbox.works          #
+#########################################################################
+#                   GNU General Public License v3.0                     #
+#########################################################################
+---
+- name: "Set DNS Record on CloudFlare"
+  include_role:
+    name: cloudflare
+  vars:
+    subdomain: flexget
+  when: cloudflare_enabled
+
+- name: Create required directories
+  file: "path={{ item }} state=directory mode=0775 owner={{ user.name }} group={{ user.name }}"
+  with_items:
+    - /opt/flexget
+    - /opt/flexget/data
+    - /opt/flexget/config
+
+- name: "Stop and remove any existing container"
+  docker_container:
+    name: flexget
+    state: absent
+
+- name: "Create and start container"
+  docker_container:
+    name: flexget
+    image: "wiserain/flexget:latest"
+    pull: yes
+    env:
+      PUID: "{{ uid }}"
+      PGID: "{{ gid }}"
+      VIRTUAL_HOST: "flexget.{{ user.domain }}"
+      VIRTUAL_PORT: 3539
+      LETSENCRYPT_HOST: "flexget.{{ user.domain }}"
+      LETSENCRYPT_EMAIL: "{{ user.email }}"
+      FG_WEBUI_PASSWD: "{{ flexget.flex_pass|default('f1exgetp@sslongPassFlex',true) }}"
+      FG_LOG_LEVEL: "info"
+      TZ: "{{ system.timezone }}"
+    volumes:
+      - "/opt/flexget/config:/config"
+      - "/opt/flexget/data:/data"
+      - "/mnt:/mnt"
+    labels:
+      "com.github.cloudbox.cloudbox_managed": "true"
+    networks:
+      - name: cloudbox
+        aliases:
+          - flexget
+    purge_networks: yes
+    restart_policy: unless-stopped
+    state: started

@@ -1,2 +1,9 @@
 ---
 favorite_color: red
+flexget:
+  flex_pass: f1exgetp@sslongPassFlex
+docuwiki:
+  subdomain: wiki
+  ssh_domain: bitbucket.org
+  remote_url: git@bitbucket.org:YOUR_BITBUCKET_USERNAME/wiki.git
+  ssh_port: 22

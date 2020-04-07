@@ -9,3 +9,4 @@
     - { role: pre_tasks }
     - { role: myrole, tags: ['myrole'] }
     - { role: mkvtoolnix, tags: ['mkvtoolnix'] }
+    - { role: flexget, tags: ['flexget'] }
