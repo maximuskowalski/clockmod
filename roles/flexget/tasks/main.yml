@@ -14,7 +14,7 @@
     name: cloudflare-dns
   vars:
     record: flexget
-  when: cloudflare_enabled
+  #when: cloudflare_enabled
 
 - name: Create required directories
   file: "path={{ item }} state=directory mode=0775 owner={{ user.name }} group={{ user.name }}"
