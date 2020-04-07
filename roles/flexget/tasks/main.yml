@@ -9,11 +9,11 @@
 #                   GNU General Public License v3.0                     #
 #########################################################################
 ---
-- name: "Setting CloudFlare DNS Record"
-  include_role:
-    name: cloudflare-dns
-  vars:
-    record: flexget
+# - name: "Setting CloudFlare DNS Record"
+#   include_role:
+#     name: cloudflare-dns
+#   vars:
+#     record: flexget
   #when: cloudflare_enabled
 
 - name: Create required directories
