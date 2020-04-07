@@ -11,10 +11,10 @@
 ---
 - name: "Set DNS Record on CloudFlare"
   include_role:
-    name: cloudflare
+    name: dns
   vars:
-    subdomain: flexget
-  when: cloudflare_enabled
+    dns_record: "flexget"
+    dns_zone: "{{ user.domain }}"
 
 - name: Create required directories
   file: "path={{ item }} state=directory mode=0775 owner={{ user.name }} group={{ user.name }}"
