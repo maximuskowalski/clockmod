@@ -30,7 +30,7 @@
 
 - name: "Create and start container"
   docker_container:
-    name: flexget
+    name: "flexget"
     image: "wiserain/flexget:latest"
     pull: yes
     env:
